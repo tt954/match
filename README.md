@@ -15,14 +15,16 @@ Based on the cards dealt, there are a specified number of qualified matches. A m
 * There will a be scoreboard consisted of the highest scores per a given day. 
 
 ## 3. Wireframes 
-
+![match](dist/images/IMG_0229.jpg)
+![layout](dist/images/IMG_0228.jpg)
 
 ## 4. Architecture and Technology 
-Javascript 
-Canvas 
+Javascript, Canvas 
 
 ## 5. Implementation Timeline 
-
+* Day 1, 2 - Board, cards, math to solve solutions depending on cards dealt
+* Day 3 - Frontend, website layout
+* Day 4, 5 - User interface and experience (how the player input matches, etc.)
 
 ## 6. (Bonus Features)
 Mobile version of the app
