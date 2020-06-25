@@ -1,7 +1,7 @@
 {
   "name": "match",
   "version": "1.0.0",
-  "description": "",
+  "description": "card matching game",
   "main": "index.js",
   "browserslist": [
     "last 1 version",
@@ -14,9 +14,11 @@
     "webpack:watch": "webpack --watch --config webpack.dev.js",
     "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize"
   },
-  "author": "mrcjbradley",
+  "author": "tieulam",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "^1.10.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
