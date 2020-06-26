@@ -1,8 +1,7 @@
-let _ = require("underscore");
-let Card = require('./card');
+let _ = require('underscore');
+let Deck = require('./deck');
 
 function Board () {
-  this.board = _makeBoard();
 }
 
 Board.prototype.checkMatch = function (pos1, pos2, pos3) {
@@ -29,27 +28,18 @@ Board.prototype.checkMatch = function (pos1, pos2, pos3) {
 
 const sumArr = (arr) => arr.reduce((a, b) => a + b, 0);
 
-function _makeBoard() {
-  const board = [];
+function _renderBoard() {
+  document.getElementById("deck").innerHTML = "";
+  const deck = new Deck().deck;
+  console.log(deck);
 
-  for (let i = 0; i < 16; i++) {
-    board.push(new Card());
+  for (let i = 0; i < deck.length; i++) {
+    let card = document.createElement("div");
+    console.log(card);
+    card.background = deck[i].background;
+    card.className = "card";
+    document.getElementById("deck").appendChild(card);
   }
-
-  let unique = false;
-  while (!unique) {
-    unique = true;
-
-    for (let i = 0; i < board.length - 1; i++) {
-      for (let j = 1; j < board.length; j++) {
-        if (_.isEqual(board[i], board[j])) {
-          board[j] = new Card();
-        }
-      }
-    }
-  }
-
-  return board;
 }
 
 const _getAttribute = (cards, attribute) => {
@@ -62,13 +52,4 @@ const _getAttribute = (cards, attribute) => {
 
 //testing purposes 
 
-c1 = { shape: 1, color: 1, background: 2, selected: false };
-c2 = { shape: 3, color: 1, background: 3, selected: false };
-c3 = { shape: 2, color: 1, background: 1, selected: false };
-c4 = { shape: 2, color: 1, background: 2, selected: false };
-arr = [c1, c2, c3];
-// console.log(_.uniq(_makeBoard()));
-// console.log(_getAttribute(arr, "background"));
-console.log(_makeBoard())
-
-module.exports = Board;
+console.log(_renderBoard());

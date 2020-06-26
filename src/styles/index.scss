@@ -9,18 +9,24 @@ body {
   height: 100vh;
 }
 
-.match-game {
+#deck {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 1000px;
+  width: 900px;
 }
 
-.match-card {
-  background: lightblue;
-  height: 100px;
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
   margin: 5px;
   width: 100px;
+}
+
+.shape {
+  font-size: 50px;
 }
 
 .base-timer {
