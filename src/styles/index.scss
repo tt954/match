@@ -5,7 +5,9 @@
 }
 
 body {
-  background-color: lightcoral;
+  display: flex;
+  align-items: center;
+  background-color: #f1f2f9;
   height: 100vh;
 }
 
@@ -17,6 +19,7 @@ body {
 }
 
 .card {
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +30,7 @@ body {
 
 .shape {
   font-size: 50px;
+  /* text-shadow: 1px 0px 3px lightgray; */
 }
 
 .base-timer {
