@@ -5,33 +5,50 @@
 }
 
 body {
-  display: flex;
-  align-items: center;
   background-color: #f1f2f9;
   height: 100vh;
+}
+
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #deck {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 900px;
+  margin: 30px;
+  width: 660px;
 }
 
 .card {
-  border: 1px solid black;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
-  margin: 5px;
-  width: 100px;
+  height: 170px;
+  width: 150px;
+  margin: 7px;
+}
+
+.clicked {
+  box-shadow: 2px 0px 5px inset #333;
 }
 
 .shape {
-  font-size: 50px;
-  /* text-shadow: 1px 0px 3px lightgray; */
+  font-size: 70px;
 }
+
+/* SCORE */
+
+#score {
+  font-size: 25px;
+}
+
+/* TIMER */
 
 .base-timer {
   position: relative;
