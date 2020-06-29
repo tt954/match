@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
@@ -48,6 +50,14 @@ document.getElementById("timer").innerHTML = `
 
 function onTimesUp() {
   clearInterval(timerInterval);
+  Swal.fire({
+    title: "Time Over",
+    confirmButtonText: "New game",
+  }).then((startOver) => {
+    if (startOver) {
+      window.location.reload();
+    }
+  });
 }
 
 export default function startTimer() {

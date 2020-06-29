@@ -9,7 +9,7 @@ class Deck {
 
   createDeck() {
     const shapes = ["star", "moon", "sun"];
-    const colors = ["#211a1d", "#9fb7b9", "white"];
+    const colors = ["#231f20", "#9fb7b9", "white"];
     const backgrounds = ["#fb3640", "#F4E87C", "#586BA4"];
 
     for (let i = 0; i < shapes.length; i++) {
