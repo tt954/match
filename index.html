@@ -7,22 +7,35 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Match</title>
   <link rel="stylesheet" href="./dist/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <h3>Match!</h3>
-
-  <section id="deck">
+  <section class="intro">
+    <h1>Ready, Set, Match!<span>&nbsp;</span></h1>
+    <div class="how-to">
+    </div>
+    <button id="click-to-play">Start game</button>
   </section>
 
-  <section id="score">
-  </section>
+  <div class="game-container hidden">
+    <div class="right-deck"> 
+      <section class="score-board">
+        <h2>Score</h2>
+        <div id="score"></div>
+      </section>
+    </div>
 
-  <section class="timer">
-    <div id="timer"></div>
-  </section>
+    <section id="deck">
+    </section>
 
-  <button id="click-to-play">Start game</button>
+    <div class="left-deck">
+      <section class="timer-container">
+        <div id="timer"></div>
+      </section>
+      <button id="click-to-restart">Restart</button>
+    </div>
+  </div>
 
   <script src="./dist/main.js"></script>
 </body>

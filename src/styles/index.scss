@@ -1,87 +1,87 @@
 * {
+  border-style: none;
   box-sizing: border-box;
+  font-family: 'Inconsolata', monospace;
   margin: 0;
   padding: 0;
 }
 
 body {
-  display: flex;
-  align-items: center;
   background-color: #f1f2f9;
   height: 100vh;
 }
+
+ul, ol {
+  list-style: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 #deck {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 900px;
+  margin: 30px;
+  width: 660px;
 }
 
 .card {
-  border: 1px solid black;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
-  margin: 5px;
-  width: 100px;
+  height: 170px;
+  width: 150px;
+  margin: 7px;
+}
+
+.clicked {
+  border: 1px solid black;
+  box-shadow: 2px 0px 5px inset #333;
 }
 
 .shape {
-  font-size: 50px;
-  /* text-shadow: 1px 0px 3px lightgray; */
+  font-size: 70px;
 }
 
-.base-timer {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.base-timer__svg {
-  transform: scaleX(-1);
-}
-
-.base-timer__circle {
-  fill: none;
-  stroke: none;
-}
-
-.base-timer__path-elapsed {
-  stroke-width: 7px;
-  stroke: grey;
-}
-
-.base-timer__path-remaining {
-  stroke-width: 7px;
-  stroke-linecap: round;
-  transform: rotate(90deg);
-  transform-origin: center;
-  transition: 1s linear all;
-  fill-rule: nonzero;
-  stroke: currentColor;
-}
-
-.base-timer__path-remaining.green {
-  color: rgb(65, 184, 131);
-}
-
-.base-timer__path-remaining.orange {
-  color: orange;
-}
-
-.base-timer__path-remaining.red {
-  color: red;
-}
-
-.base-timer__label {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 0;
+.left-deck {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 25px;
+  #click-to-restart {
+    background: #629460;
+    border-radius: 3px;
+    color: #f1f2f9;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 20px;
+  }
 }
+
+/* SCORE */
+
+.score-board {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-right: 10px;
+  h2 {
+    font-weight: 400;
+    font-size: 25px;
+  }
+  #score {
+    font-size: 30px;
+  }
+}
+
