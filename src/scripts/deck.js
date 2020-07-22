@@ -39,8 +39,4 @@ class Deck {
   }
 }
 
-// d = new Deck();
-// console.log(d.deck);
-// console.log(d.deck.length);
-
 module.exports = Deck;

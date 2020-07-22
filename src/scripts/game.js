@@ -1,5 +1,5 @@
 let _ = require("underscore");
-let Deck = require("../deck");
+let Deck = require("./deck");
 import Swal from "sweetalert2";
 import startTimer from "./timer";
 
@@ -74,12 +74,10 @@ function _renderDeck() {
 
 function addCard(cardId) {
   matchArr.push(cardId);
-  console.log(matchArr)
 }
 
 function removeCard(cardId) {
   matchArr = _.without(matchArr, cardId);
-  console.log(matchArr);
 }
 
 function checkThree(cardDivs) {
@@ -92,7 +90,6 @@ function checkThree(cardDivs) {
       matchesCount++;
       score.innerHTML = matchesCount;
       matches.push(matchArr);
-      console.log(matches);
       matchArr = [];
     } else if (!checkMatch(cards, matchArr)) {
       Swal.fire({
