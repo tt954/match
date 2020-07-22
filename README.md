@@ -1,30 +1,35 @@
 # Project Proposal 
 
-## 1. Background and Overview 
-`Match` is inspired by the card game [Set](https://en.wikipedia.org/wiki/Set_(card_game)). There are at most nine cards on the board. The unique cards vary in four features:
-  1. Background color (red, yellow, blue, black)
-  2. Shape (circle, square, triangle OR moon, star, sun)
-  3. The color that fills the shapes (red, yellow, blue, black)
+## Background and Overview 
+`Match!` is inspired by the card game [Set](https://en.wikipedia.org/wiki/Set_(card_game)). There are at most twenty randomly generated cards per game. The unique cards vary in four features:
+  1. `Background color` (e.g. red, yellow, blue, black)
+  2. `Shape` (e.g. circle, square, triangle OR moon, star, sun)
+  3. `The color that fills the shapes` (e.g. red, yellow, blue, black)
 
-Based on the cards dealt, there are a specified number of qualified matches. A match: when each of the above mentioned features are either a) all the same or b) all different. 
+A match consists of three cards with the above mentioned features that are either **a) all the same** or **b) all different**. 
 
-## 2. Functionality and MVPs 
-* In Match, the player will be able to play the game by choosing the three cards that they think will make a match. If the match is qualified, the user gets one point, otherwise they lose one point. 
-* If the player thinks that there are no longer any matches on the board, they can call Done. If the player calls done accurately (i.e. they have named all the matches for the cards dealt), they attain three points. If a Done is called incorrectly, they will also lose a point. 
-* The player's scores across five rounds of varying difficultiness will be totaled. 
-* There will a be scoreboard consisted of the highest scores per a given day. 
+## Functionality and MVPs 
+* `Making a match` Player can pick up to three cards they think will make a match. 
+  Player will get one point per correct match. 
+  Alerts will pop up to let the player know if the match is not an answer or has already been chosen.
+* `Timer` Player will have one minute to come up with as many matches as possible. 
+* `Score Board` One point will be awarded per successful match. 
 
-## 3. Wireframes 
-![match](dist/images/IMG_0229.jpg)
-![layout](dist/images/IMG_0228.jpg)
+## Wireframes 
 
-## 4. Architecture and Technology 
-Javascript, Canvas 
+<img src="./dist/images/wf_02.png" alt="landing page" width="400"/>  |  <img src="./dist/images/wf_01.png" alt="game screen" width="400"/>
+:-------------------------:|:-------------------------:
+landing page | game screen
 
-## 5. Implementation Timeline 
-* Day 1, 2 - Board, cards, math to solve solutions depending on cards dealt
-* Day 3 - Frontend, website layout
-* Day 4, 5 - User interface and experience (how the player input matches, etc.)
+## Architecture and Technology 
+Javascript, HTML and CSS
 
-## 6. (Bonus Features)
+## Implementation Timeline 
+* Day 1 - Game logic
+* Day 2 - Render card and deck 
+* Day 3 - Timer and score board 
+* Day 4 - User interface and experience 
+* Day 5 - Clean up for deployment
+
+## Bonus Features
 Mobile version of the app
