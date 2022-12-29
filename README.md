@@ -32,4 +32,8 @@ Javascript, HTML and CSS
 * Day 5 - Clean up for deployment
 
 ## Bonus Features
-Mobile version of the app
+* User can choose how cards in a deck (Difficulty level)
+* More elaborate game instructions
+* Option to skip game instructions
+* Zen mode without timer
+* Alert for when all possible matches are found
