@@ -1,143 +1,112 @@
-let _ = require("underscore");
-let Deck = require("./deck");
-import Swal from "sweetalert2";
-import startTimer from "./timer";
+import _ from 'underscore';
+import Deck from './Deck';
+import Swal from 'sweetalert2';
+import startTimer from './timer';
+import { isValidMatch, isExistingMatch } from './utils';
 
-import { library, icon } from "@fortawesome/fontawesome-svg-core";
-import { faMoon, faStar, faSun } from "@fortawesome/free-solid-svg-icons";
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+import {
+  faMoon,
+  faStar,
+  faSun,
+} from '@fortawesome/free-solid-svg-icons';
 library.add(faMoon, faStar, faSun);
 
 export function startGame() {
   _renderDeck();
   startTimer();
   document
-    .getElementsByClassName("game-container")[0]
-    .classList.remove("hidden");
-  document.getElementsByClassName("intro")[0].classList.add("hidden");
+    .getElementsByClassName('game-container')[0]
+    .classList.remove('hidden');
+  document.getElementsByClassName('intro')[0].classList.add('hidden');
 }
 
 const d = new Deck();
-const cards = d.cards;
+const cards = d.allCards;
 const deck = d.deck;
 let matchesCount = 0;
-const matches = [0];
-let matchArr = [];
+const foundMatches = [0];
+let threeCards = [];
 
-const scoreSection = document.getElementById("score");
-const score = document.createElement("div");
+const scoreSection = document.getElementById('score');
+const score = document.createElement('div');
 score.innerHTML = matchesCount;
 scoreSection.appendChild(score);
 
 function _renderDeck() {
-  document.getElementById("deck").innerHTML = "";
-  const cardDivs = [];
+  document.getElementById('deck').innerHTML = '';
+  const cardContainers = [];
 
   for (let i = 0; i < deck.length; i++) {
-    let cardDiv = document.createElement("div");
-    let shapeSpan = document.createElement("span");
+    let cardContainer = document.createElement('div');
+    let shapeContainer = document.createElement('span');
 
-    // add shapes to card 
+    // add icon according to the shape of each card
     switch (deck[i].shape) {
       case deck[i].shape:
-        shapeSpan.innerHTML = icon({
-          prefix: "fas",
+        shapeContainer.innerHTML = icon({
+          prefix: 'fas',
           iconName: deck[i].shape,
         }).html;
         break;
     }
+    // update icon color
+    shapeContainer.style.color = deck[i].color;
+    shapeContainer.className = 'shape';
+    cardContainer.appendChild(shapeContainer);
+    // update card background color
+    cardContainer.style.background = deck[i].background;
+    cardContainer.className = 'card';
 
-    shapeSpan.style.color = deck[i].color;
-    shapeSpan.className = "shape";
-    cardDiv.appendChild(shapeSpan);
-
-    cardDiv.style.background = deck[i].background;
-    cardDiv.className = "card";
-
-    cardDiv.addEventListener("click", function () {
+    cardContainer.addEventListener('click', function () {
       let card = deck[i];
-
-      if (this.classList.contains("clicked")) {
-        this.classList.remove("clicked");
+      if (this.classList.contains('clicked')) {
+        this.classList.remove('clicked');
         removeCard(card.id);
-        checkThree(cardDivs);
+        checkThree(cardContainers);
       } else {
-        this.classList.add("clicked");
+        this.classList.add('clicked');
         addCard(card.id);
-        checkThree(cardDivs);
+        checkThree(cardContainers);
       }
     });
 
-    cardDivs.push(cardDiv);
-    document.getElementById("deck").appendChild(cardDiv);
+    cardContainers.push(cardContainer);
+    document.getElementById('deck').appendChild(cardContainer);
   }
 }
 
-function addCard(cardId) {
-  matchArr.push(cardId);
-}
+const addCard = (cardId) => threeCards.push(cardId);
+const removeCard = (cardId) =>
+  (threeCards = _.without(threeCards, cardId));
 
-function removeCard(cardId) {
-  matchArr = _.without(matchArr, cardId);
-}
-
-function checkThree(cardDivs) {
-  if (matchArr.length === 3) {
-    matchArr = matchArr.sort((a, b) => a - b);
-    if (
-      checkMatch(cards, matchArr) &&
-      !checkMatchArr(matches, matchArr)
-    ) {
+// check the three chosen/clicked cards
+function checkThree(cardContainers) {
+  if (threeCards.length === 3) {
+    threeCards = threeCards.sort((a, b) => a - b);
+    if (!isValidMatch(cards, threeCards)) {
+      Swal.fire({
+        position: 'top-end',
+        text: 'Not a match',
+        showConfirmButton: false,
+        timer: 800,
+      });
+    } else if (isExistingMatch(foundMatches, threeCards)) {
+      Swal.fire({
+        position: 'top-end',
+        text: 'Already answered',
+        showConfirmButton: false,
+        timer: 800,
+      });
+    } else {
       matchesCount++;
       score.innerHTML = matchesCount;
-      matches.push(matchArr);
-      matchArr = [];
-    } else if (!checkMatch(cards, matchArr)) {
-      Swal.fire({
-        position: "top-end",
-        text: "Not a match",
-        showConfirmButton: false,
-        timer: 800,
-      });
-      matchArr = [];
-    } else if (checkMatchArr(matches, matchArr)) {
-      Swal.fire({
-        position: "top-end",
-        text: "Already answered",
-        showConfirmButton: false,
-        timer: 800,
-      });
-      matchArr = [];
-    } else {
-      matchArr = [];
+      foundMatches.push(threeCards);
     }
+    threeCards = [];
 
-    cardDivs.forEach((cardDiv) => cardDiv.classList.remove("clicked"));
+    cardContainers.forEach((cardDiv) =>
+      cardDiv.classList.remove('clicked')
+    );
   }
-}
-
-// return boolean indicating if matchArr is a match or not 
-function checkMatch(cards, matchArr) {
-  let shapes = [], colors = [], backgrounds = [];
-
-  matchArr.forEach(cardId => {
-    shapes.push(cards[cardId].shape)
-    colors.push(cards[cardId].color)
-    backgrounds.push(cards[cardId].background)
-  });
-
-  if (_.uniq(shapes).length == 2 || 
-      _.uniq(colors).length == 2 || 
-      _.uniq(backgrounds).length == 2) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-// return boolean if matchArr is included in matches 
-function checkMatchArr(matches, matchArr) {
-  for (let i = 0; i < matches.length; i++) {
-    if (_.isEqual(matches[i], matchArr)) return true;
-  }
-  return false;
 }
