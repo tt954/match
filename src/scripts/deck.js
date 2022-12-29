@@ -1,37 +1,40 @@
-let Card = require('./card');
+import Card from './Card';
+import { SHAPES, COLORS } from './constants';
 
 class Deck {
   constructor() {
-    this.cards = [];
-    this.createDeck();
-    this.deck = this.sampleDeck();
+    this.allCards = [];
+    this._buildCards();
+    this.deck = this._createDeck();
   }
 
-  createDeck() {
-    const shapes = ["star", "moon", "sun"];
-    const colors = ["#231f20", "#9fb7b9", "white"];
-    const backgrounds = ["#fb3640", "#F4E87C", "#586BA4"];
+  _buildCards() {
+    const shapes = [SHAPES.STAR, SHAPES.MOON, SHAPES.SUN];
+    const colors = [COLORS.DARKGREY, COLORS.LIGHTGREY, COLORS.WHITE];
+    const backgrounds = [COLORS.RED, COLORS.YELLOW, COLORS.PURPLE];
 
     for (let i = 0; i < shapes.length; i++) {
       for (let j = 0; j < colors.length; j++) {
         for (let k = 0; k < backgrounds.length; k++) {
-          this.cards.push(new Card(null, shapes[i], colors[j], backgrounds[k]));
+          this.allCards.push(
+            new Card(null, shapes[i], colors[j], backgrounds[k])
+          );
         }
       }
     }
   }
 
-  sampleDeck() {
+  _createDeck() {
     const deck = [];
-    const indices = [-1];
-    
-    while (indices.length <= 16) {
-      const index = Math.floor(Math.random() * this.cards.length);
-      const card = this.cards[index];
-      if (!indices.includes(index)) {
+    const cardsDrawn = [-1];
+
+    while (cardsDrawn.length <= 16) {
+      const index = Math.floor(Math.random() * this.allCards.length);
+      const card = this.allCards[index];
+      if (!cardsDrawn.includes(index)) {
         card.id = index;
         deck.push(card);
-        indices.push(index);
+        cardsDrawn.push(index);
       }
     }
 
@@ -39,4 +42,4 @@ class Deck {
   }
 }
 
-module.exports = Deck;
+export default Deck;
