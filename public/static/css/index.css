@@ -22,3 +22,14 @@ ul,
 ol {
   list-style: none;
 }
+
+.card {
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7em;
+  width: 5em;
+  margin: 1em;
+}
