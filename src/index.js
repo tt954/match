@@ -2,12 +2,25 @@ import './styles/index.scss';
 import './styles/intro.scss';
 import './styles/timer.scss';
 
-import _ from 'underscore';
-import * as GameAPIUtil from './scripts/game';
+// import _ from 'underscore';
+// import * as GameAPIUtil from './scripts/game';
+import Game from './scripts/test';
+import startTimer from './scripts/timer';
+
+function startGame() {
+  Game.renderDeck();
+  startTimer();
+  // start score at 0
+  document.getElementById('score').innerHTML = '0';
+  // show game container
+  document.getElementById('game-container').display = 'block';
+  // hide game instructions
+  document.getElementById('instructions').display = 'none';
+}
 
 document
   .getElementById('click-to-play')
-  .addEventListener('click', GameAPIUtil.startGame);
+  .addEventListener('click', startGame());
 document
   .getElementById('click-to-restart')
   .addEventListener('click', function () {
