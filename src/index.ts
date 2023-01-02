@@ -1,5 +1,3 @@
-alert('typed');
-
 import Game from './Game';
 
 const startButton = <HTMLButtonElement>(

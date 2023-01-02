@@ -1,4 +1,4 @@
-import Card from './Card';
+import Deck from './Deck';
 
 class Game {
   private score: number;
@@ -12,11 +12,14 @@ class Game {
   }
 
   start(): void {
-    const c1 = new Card(2, 'star', 'blue', 'white');
-    const cardElement = <HTMLDivElement>document.createElement('div');
-    cardElement.classList.add('card');
-    cardElement.style.color = c1.getProperties().backgroundColor;
-    document.querySelector('#deck')?.appendChild(cardElement);
+    const d = new Deck(16);
+    const deckContainer = document.querySelector('#deck');
+    d.deck.forEach((card) => {
+      const cardElement = document.createElement('div');
+      cardElement.classList.add('card');
+      cardElement.style.backgroundColor = card.backgroundColor;
+      deckContainer?.appendChild(cardElement);
+    });
   }
 }
 export default Game;
