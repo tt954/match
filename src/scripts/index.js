@@ -4,8 +4,8 @@ import './styles/timer.scss';
 
 // import _ from 'underscore';
 // import * as GameAPIUtil from './scripts/game';
-import Game from './scripts/test';
-import startTimer from './scripts/timer';
+import Game from './test';
+import startTimer from './timer';
 
 function startGame() {
   Game.renderDeck();
