@@ -1,7 +1,7 @@
 # Project Proposal 
 
 ## Background and Overview 
-`Match!` is inspired by the card game [Set](https://en.wikipedia.org/wiki/Set_(card_game)). There are at most twenty randomly generated cards per game. The unique cards vary in four features:
+`Match!` is inspired by the card game [Set](https://en.wikipedia.org/wiki/Set_(card_game)). A deck consists of 16 randomly generated cards. The unique cards vary in four features:
   1. `Background color` (e.g. red, yellow, blue, black)
   2. `Shape` (e.g. circle, square, triangle OR moon, star, sun)
   3. `The color that fills the shapes` (e.g. red, yellow, blue, black)
