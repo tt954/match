@@ -1,23 +1,23 @@
 type Properties = {
-  value: number;
+  id: number;
   shape: string;
   color: string;
   backgroundColor: string;
 };
 
 class Card {
-  value: number;
+  id: number;
   shape: string;
   color: string;
   backgroundColor: string;
 
   constructor(
-    value: number,
+    id: number,
     shape: string,
     color: string,
     backgroundColor: string
   ) {
-    this.value = value;
+    this.id = id;
     this.shape = shape;
     this.color = color;
     this.backgroundColor = backgroundColor;
@@ -25,7 +25,7 @@ class Card {
 
   getProperties(): Properties {
     return {
-      value: this.value,
+      id: this.id,
       shape: this.shape,
       color: this.color,
       backgroundColor: this.backgroundColor,

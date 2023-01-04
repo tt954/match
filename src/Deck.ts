@@ -1,4 +1,5 @@
 import Card from './Card';
+import { SHAPES, COLORS } from './scripts/constants';
 
 class Deck {
   deck: Card[];
@@ -7,10 +8,14 @@ class Deck {
     this.deck = this.buildDeck(deckSize);
   }
 
-  buildDeck(deckSize: number): Card[] {
-    const shapes = ['star', 'moon', 'sun'];
-    const colors = ['darkgrey', 'lightgrey', 'white'];
-    const backgroundColors = ['red', 'yellow', 'purple'];
+  private buildDeck(deckSize: number): Card[] {
+    const shapes = [SHAPES.STAR, SHAPES.MOON, SHAPES.SUN];
+    const colors = [COLORS.DARKGREY, COLORS.LIGHTGREY, COLORS.WHITE];
+    const backgroundColors = [
+      COLORS.RED,
+      COLORS.YELLOW,
+      COLORS.PURPLE,
+    ];
 
     const allCards = [];
     for (let i = 0; i < shapes.length; i++) {
@@ -29,12 +34,16 @@ class Deck {
       const index = Math.floor(Math.random() * allCards.length);
       const cardDrawn = allCards[index];
       if (!cardsDrawn.includes(index)) {
-        cardDrawn.value = index;
+        cardDrawn.id = index;
         deck.push(cardDrawn);
         cardsDrawn.push(index);
       }
     }
     return deck;
+  }
+
+  getCardById(cardId: number): Card | undefined {
+    return this.deck.find((card: Card) => card.id === cardId);
   }
 }
 
