@@ -18,7 +18,7 @@ class Game {
 
     const deckContainer = document.querySelector('#deck');
     d.deck.forEach((card) => {
-      const cardElement = document.createElement('button');
+      const cardElement = document.createElement('div');
       // render cards based on their properties
       cardElement.classList.add('card');
       cardElement.dataset.cardId = card.id.toString();
@@ -29,7 +29,7 @@ class Game {
     });
 
     deckContainer?.addEventListener('click', (event: Event) => {
-      const cardElement = event.target as HTMLButtonElement;
+      const cardElement = event.target as HTMLDivElement;
       const cardId = parseInt(cardElement.dataset.cardId);
       const card = d.getCardById(cardId);
 
@@ -58,9 +58,16 @@ class Game {
       this.foundMatches.push(this.chosenCards.map((c) => c.id));
     }
     this.chosenCards = [];
-    document
-      .querySelectorAll('.clicked')
-      .forEach((c) => c.classList.remove('clicked'));
+    setTimeout(
+      () =>
+        document
+          .querySelectorAll('.clicked')
+          .forEach((c) => c.classList.remove('clicked')),
+      850
+    );
+    // document
+    //   .querySelectorAll('.clicked')
+    //   .forEach((c) => c.classList.remove('clicked'));
   }
 }
 export default Game;

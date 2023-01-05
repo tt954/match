@@ -1,5 +1,5 @@
 import Card from './Card';
-import { SHAPES, COLORS } from './scripts/constants';
+import { SHAPES, COLORS } from './constants';
 
 class Deck {
   deck: Card[];

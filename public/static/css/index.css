@@ -23,13 +23,25 @@ ol {
   list-style: none;
 }
 
+#deck {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-items: center;
+  align-items: center;
+  grid-gap: 1.5rem;
+}
+
+.clicked {
+  transition: 0.3s;
+  transform: scale(1.2);
+}
+
 .card {
-  box-shadow: 2px 2px 5px grey;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 7em;
-  width: 5em;
-  margin: 1em;
+  height: 9rem;
+  width: 6rem;
+  border-radius: 0.5rem;
 }
