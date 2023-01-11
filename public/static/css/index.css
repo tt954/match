@@ -32,8 +32,7 @@ ol {
 }
 
 .clicked {
-  transition: 0.3s;
-  transform: scale(1.2);
+  box-shadow: 0 3px 10px 2px rgb(105, 105, 105);
 }
 
 .card {
@@ -44,4 +43,15 @@ ol {
   height: 9rem;
   width: 6rem;
   border-radius: 0.5rem;
+}
+
+.button {
+  color: rgb(255, 255, 255);
+  text-transform: capitalize;
+  font-size: 1.3em;
+  font-weight: 800;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0px);
+  transition-duration: 0.2s;
+  background-color: rgb(104, 66, 255);
 }
