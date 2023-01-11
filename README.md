@@ -32,8 +32,10 @@ Javascript, HTML and CSS
 * Day 5 - Clean up for deployment
 
 ## Bonus Features
-* User can choose how cards in a deck (Difficulty level)
+* User can choose how cards in a deck (Difficulty levels)
 * More elaborate game instructions
 * Option to skip game instructions
 * Zen mode without timer
 * Alert for when all possible matches are found
+* User can see all the matches they have found 
+* User knows when there are no more possible matches
