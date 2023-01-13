@@ -1,9 +1,5 @@
 import Card from './Card';
 
-export const removeCard = (cardId: number, chosenCards: Card[]) => {
-  return chosenCards.filter((c) => c.id !== cardId);
-};
-
 export const isValidMatch = (chosenCards: Card[]) => {
   let shapes = new Set(),
     colors = new Set(),
@@ -30,7 +26,7 @@ export const isExistingMatch = (
   );
 };
 
-export const createShape = (color: string, shape: string) => {
+export const createShape = (shape: string, color: string) => {
   const shapeElement = document.createElement('i');
   shapeElement.classList.add('bi');
   shapeElement.classList.add(`bi-${shape}`);

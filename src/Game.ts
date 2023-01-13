@@ -1,11 +1,6 @@
 import Deck from './Deck';
 import Card from './Card';
-import {
-  removeCard,
-  createShape,
-  isValidMatch,
-  isExistingMatch,
-} from './utils';
+import { createShape, isValidMatch, isExistingMatch } from './utils';
 
 class Game {
   private score: number;
@@ -37,13 +32,14 @@ class Game {
       cardElement.addEventListener('click', () => {
         if (cardElement.classList.contains('clicked')) {
           cardElement.classList.remove('clicked');
-          this.chosenCards = removeCard(id, this.chosenCards);
+          this.chosenCards = this.chosenCards.filter((c) => c.id !== id);
+          if (this.chosenCards.length === 3) this.checkChosenCards();
         } else {
           cardElement.classList.add('clicked');
           this.chosenCards.push(card);
+          if (this.chosenCards.length === 3) this.checkChosenCards();
         }
       });
-      if (this.chosenCards.length === 3) this.checkChosenCards();
     });
   }
 
@@ -68,4 +64,5 @@ class Game {
     );
   }
 }
+
 export default Game;

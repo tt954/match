@@ -23,7 +23,18 @@ ol {
   list-style: none;
 }
 
+h1 {
+  margin: 1rem 0;
+}
+
+#game-container {
+  display: flex;
+  width: 75vw;
+  margin: 0 auto;
+}
+
 #deck {
+  flex: 2;
   display: grid;
   grid-template-columns: repeat(4, auto);
   justify-items: center;
@@ -31,8 +42,20 @@ ol {
   grid-gap: 1.5rem;
 }
 
+#score {
+  flex: 1;
+}
+
+#timer {
+  flex: 1;
+}
+
 .clicked {
   box-shadow: 0 3px 10px 2px rgb(105, 105, 105);
+}
+
+.hidden {
+  display: none;
 }
 
 .card {
@@ -45,13 +68,14 @@ ol {
   border-radius: 0.5rem;
 }
 
-.button {
+button {
   color: rgb(255, 255, 255);
   text-transform: capitalize;
-  font-size: 1.3em;
-  font-weight: 800;
+  font-size: 1em;
+  font-weight: 700;
   cursor: pointer;
   transform: perspective(1px) translateZ(0px);
   transition-duration: 0.2s;
   background-color: rgb(104, 66, 255);
+  border-radius: 1rem;
 }
