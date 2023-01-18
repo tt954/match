@@ -1,10 +1,11 @@
 import Deck from './Deck';
-import { removeCard } from './utils';
+import Card from './Card';
+import { createShape, isValidMatch, isExistingMatch } from './utils';
 
 class Game {
   private score: number;
   foundMatches: number[][];
-  chosenCards: number[];
+  chosenCards: Card[];
 
   constructor() {
     this.score = 0;
@@ -15,27 +16,53 @@ class Game {
   start(): void {
     const d = new Deck(16);
 
+    // from the deck created above, render each card based on its properties
     const deckContainer = document.querySelector('#deck');
     d.deck.forEach((card) => {
-      const cardElement = document.createElement('button');
-      // render cards based on their properties
+      const cardElement = document.createElement('div');
       cardElement.classList.add('card');
-      cardElement.value = card.value.toString();
-      cardElement.style.backgroundColor = card.backgroundColor;
-      deckContainer?.appendChild(cardElement);
-    });
+      // cardElement.dataset.cardId = card.id.toString();
+      const { id, shape, color, backgroundColor } = card.getProperties();
+      cardElement.style.backgroundColor = backgroundColor;
+      const shapeElement = createShape(shape, color);
+      cardElement.appendChild(shapeElement);
+      deckContainer.appendChild(cardElement);
 
-    deckContainer?.addEventListener('click', (event: Event) => {
-      const cardElement = event.target as HTMLButtonElement;
-      const cardId = parseInt(cardElement.value);
-      if (cardElement.classList.contains('clicked')) {
-        cardElement.classList.remove('clicked');
-        this.chosenCards = removeCard(cardId, this.chosenCards); // todo: does splice alter this.chosenCards
-      } else {
-        cardElement.classList.add('clicked');
-        this.chosenCards.push(cardId);
-      }
+      // add listener on each card container to check for a match
+      cardElement.addEventListener('click', () => {
+        if (cardElement.classList.contains('clicked')) {
+          cardElement.classList.remove('clicked');
+          this.chosenCards = this.chosenCards.filter((c) => c.id !== id);
+          if (this.chosenCards.length === 3) this.checkChosenCards();
+        } else {
+          cardElement.classList.add('clicked');
+          this.chosenCards.push(card);
+          if (this.chosenCards.length === 3) this.checkChosenCards();
+        }
+      });
     });
   }
+
+  checkChosenCards() {
+    const cardsToCheck = this.chosenCards.sort((a, b) => a.id - b.id);
+    if (!isValidMatch(cardsToCheck)) {
+      console.log('not a match');
+    } else if (isExistingMatch(this.foundMatches, cardsToCheck)) {
+      console.log('match already found');
+    } else {
+      this.score++;
+      document.querySelector('#score').innerHTML = this.score.toString();
+      this.foundMatches.push(cardsToCheck.map(({ id }) => id));
+    }
+    this.chosenCards = [];
+    setTimeout(
+      () =>
+        document
+          .querySelectorAll('.clicked')
+          .forEach((c) => c.classList.remove('clicked')),
+      1000
+    );
+  }
 }
+
 export default Game;

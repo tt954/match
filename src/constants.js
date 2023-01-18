@@ -1,7 +1,7 @@
 export const SHAPES = {
-  STAR: 'star',
-  MOON: 'moon',
-  SUN: 'sun',
+  STAR: 'star-fill',
+  MOON: 'moon-fill',
+  SUN: 'brightness-high-fill',
 };
 
 export const COLORS = {
